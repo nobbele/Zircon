@@ -1,0 +1,16 @@
+sub boot {
+    // Loading value by immediate
+    ld A, $FF
+    // By variable address
+    ld A, &my_var
+    // By variable
+    ld B, my_var
+
+    // Storing values by address
+    ld $6000*, A
+    // By constant
+    ld some_constant*, A
+
+    jp boot
+    fallthrough
+}
