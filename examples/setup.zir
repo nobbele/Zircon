@@ -1,0 +1,21 @@
+def StackAddress = $FFFF
+
+@origin($0000)
+sub boot {
+    ld SP, (StackAddress + 1)
+    jp start
+}
+
+@origin($0038)
+sub int {
+    hlt
+}
+
+@origin($0066)
+sub nmi {
+    hlt
+}
+
+sub start {
+
+}

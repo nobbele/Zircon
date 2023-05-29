@@ -16,7 +16,7 @@ sub boot {
     sta ($6000)
 
     jmp boot
-    fallthrough
+    @fallthrough
 }
 "#,
     ))
@@ -29,24 +29,14 @@ sub boot {
 
     assert_eq!(
         error_tokens,
-        vec![
-            Token {
-                ty: Error,
-                span: Span {
-                    pos: 23..25,
-                    line: 2..3,
-                    col: 11..13
-                }
-            },
-            Token {
-                ty: Error,
-                span: Span {
-                    pos: 34..41,
-                    line: 3..4,
-                    col: 8..15
-                }
+        vec![Token {
+            ty: Error,
+            span: Span {
+                pos: 23..25,
+                line: 2..3,
+                col: 11..13
             }
-        ]
+        }]
     );
 }
 
@@ -63,7 +53,7 @@ ld A $FF
         tokens,
         vec![
             Token {
-                ty: LineSeperator,
+                ty: NewLine,
                 span: Span {
                     pos: 0..1,
                     line: 0..1,
@@ -95,7 +85,7 @@ ld A $FF
                 }
             },
             Token {
-                ty: LineSeperator,
+                ty: NewLine,
                 span: Span {
                     pos: 9..10,
                     line: 1..2,
@@ -112,7 +102,7 @@ fn tokenizer_success() {
         br#"
 sub boot {
     jmp boot
-    fallthrough
+    @fallthrough
 }
 "#,
     ))
@@ -122,7 +112,7 @@ sub boot {
         tokens,
         vec![
             Token {
-                ty: LineSeperator,
+                ty: NewLine,
                 span: Span {
                     pos: 0..1,
                     line: 0..1,
@@ -146,7 +136,7 @@ sub boot {
                 }
             },
             Token {
-                ty: BlockStart,
+                ty: OpeningCurly,
                 span: Span {
                     pos: 10..11,
                     line: 1..2,
@@ -154,7 +144,7 @@ sub boot {
                 }
             },
             Token {
-                ty: LineSeperator,
+                ty: NewLine,
                 span: Span {
                     pos: 11..12,
                     line: 1..2,
@@ -178,7 +168,7 @@ sub boot {
                 }
             },
             Token {
-                ty: LineSeperator,
+                ty: NewLine,
                 span: Span {
                     pos: 24..25,
                     line: 2..3,
@@ -186,33 +176,41 @@ sub boot {
                 }
             },
             Token {
-                ty: GenericKeyword,
+                ty: At,
                 span: Span {
-                    pos: 29..40,
+                    pos: 29..30,
                     line: 3..4,
-                    col: 4..15
+                    col: 4..5
                 }
             },
             Token {
-                ty: LineSeperator,
+                ty: Identifier,
                 span: Span {
-                    pos: 40..41,
+                    pos: 30..41,
                     line: 3..4,
-                    col: 15..16
+                    col: 5..16
                 }
             },
             Token {
-                ty: BlockEnd,
+                ty: NewLine,
                 span: Span {
                     pos: 41..42,
+                    line: 3..4,
+                    col: 16..17
+                }
+            },
+            Token {
+                ty: ClosingCurly,
+                span: Span {
+                    pos: 42..43,
                     line: 4..5,
                     col: 0..1
                 }
             },
             Token {
-                ty: LineSeperator,
+                ty: NewLine,
                 span: Span {
-                    pos: 42..43,
+                    pos: 43..44,
                     line: 4..5,
                     col: 1..2
                 }

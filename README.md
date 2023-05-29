@@ -44,11 +44,13 @@ A subroutine block requires that the programmer writes a jump (`jmp` or some con
 
 ## Todo
 - [x] Subroutine blocks
-- [ ] Memory constants (in the ROM)
+- [x] Compile-time definitions
+- [x] Memory constants (in the ROM)
+- [ ] Config things like for RAM areas
 - [ ] Variables (in the RAM)
 - [ ] Using blocks (temporary register aliases)
 - [ ] If blocks
-- [ ] Origin pragmas (for specifying addresses in the ROM)
+- [x] Origin pragmas (for specifying addresses in the ROM)
 - [ ] Multiple modules
 - [ ] Complete instruction set
 - [ ] Write-checker to require annotation of register modifications on subroutines

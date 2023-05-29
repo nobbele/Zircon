@@ -10,17 +10,14 @@ fn main() -> Result<()> {
     // let contents = std::fs::read_to_string("main.zir").unwrap();
 
     let contents = r#"
+def TargetAddress = $10
+
 sub boot {
     ld A, $FF
-    // ld A, $FFFF
-    // ld A, $10000
+    ld TargetAddress*, A
     ld $6000*, A
 
-    // ld A, &my_var
-    // ld some_address*, A
-
-    // jmp boot
-    // fallthrough
+    jp boot
 }
     "#;
 
